@@ -13,7 +13,6 @@ module "os" {
 
 data "azurerm_resource_group" "vm" {
   name     = "${var.resource_group_name}"
-  location = "${var.location}"
 }
 
 resource "random_id" "vm-sa" {
