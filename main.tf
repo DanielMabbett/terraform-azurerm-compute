@@ -11,10 +11,9 @@ module "os" {
   vm_os_simple = "${var.vm_os_simple}"
 }
 
-resource "azurerm_resource_group" "vm" {
+data "azurerm_resource_group" "vm" {
   name     = "${var.resource_group_name}"
   location = "${var.location}"
-  tags     = "${var.tags}"
 }
 
 resource "random_id" "vm-sa" {
