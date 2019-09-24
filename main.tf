@@ -235,7 +235,7 @@ resource "azurerm_virtual_machine" "vm-windows-with-datadisk" {
 
 resource "azurerm_availability_set" "vm" {
   name                         = "${var.vm_hostname}-avset"
-  location                     = "${azurerm_resource_group.vm.location}"
+  location                     = "${data.azurerm_resource_group.vm.location}"
   resource_group_name          = "${data.azurerm_resource_group.vm.name}"
   platform_fault_domain_count  = 2
   platform_update_domain_count = 2
