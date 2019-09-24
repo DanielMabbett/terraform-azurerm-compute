@@ -255,7 +255,7 @@ resource "azurerm_public_ip" "vm" {
 
 resource "azurerm_network_security_group" "vm" {
   name                = "${var.vm_hostname}-${coalesce(var.remote_port,module.os.calculated_remote_port)}-nsg"
-  location            = "${azurerm_resource_group.vm.location}"
+  location            = "${data.azurerm_resource_group.vm.location}"
   resource_group_name = "${data.azurerm_resource_group.vm.name}"
 
   security_rule {
@@ -277,7 +277,7 @@ resource "azurerm_network_security_group" "vm" {
 resource "azurerm_network_interface" "vm" {
   count                         = "${var.nb_instances}"
   name                          = "nic-${var.vm_hostname}-${count.index}"
-  location                      = "${azurerm_resource_group.vm.location}"
+  location                      = "${data.azurerm_resource_group.vm.location}"
   resource_group_name           = "${data.azurerm_resource_group.vm.name}"
   network_security_group_id     = "${azurerm_network_security_group.vm.id}"
   enable_accelerated_networking = "${var.enable_accelerated_networking}"
